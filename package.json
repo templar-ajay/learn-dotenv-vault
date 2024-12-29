@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start"
+    "dev": "node -r dotenv/config ./node_modules/.bin/next dev --turbopack",
+    "build": "node -r dotenv/config ./node_modules/.bin/next build",
+    "start": "node -r dotenv/config ./node_modules/.bin/next start --port 3003"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
