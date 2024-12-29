@@ -1,25 +1,70 @@
-# Welcome to Next.js
+# Learn to use Dotenv Vault in Next.js
 
-This is the most minimal starter for your Next.js project.
+This is a simple example of how to use dotenv vault to manage environment variables in a Next.js project.
 
-## Deploy your own
+## Getting Started
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/hello-world&project-name=hello-world&repository-name=hello-world)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+First, install the dotenv package
 
 ```bash
-npx create-next-app --example hello-world hello-world-app
+npm install dotenv --save
 ```
+
+## Logging in to Dotenv Vault
 
 ```bash
-yarn create next-app --example hello-world hello-world-app
+npx dotenv-vault@latest login
 ```
+
+## Creating a New Vault
 
 ```bash
-pnpm create next-app --example hello-world hello-world-app
+npx dotenv-vault@latest new
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Managing Your Vault
+
+### Pushing the vault to the cloud
+
+```bash
+npx dotenv-vault@latest push
+```
+
+### Pulling the vault from the cloud
+
+```bash
+npx dotenv-vault@latest pull
+```
+
+## Production Environment
+
+### Pushing to the production vault
+
+1. First, edit the `.env.production` file with your production values
+2. Then push to the production vault:
+
+```bash
+npx dotenv-vault@latest push production
+```
+
+### Pulling from the production vault
+
+```bash
+npx dotenv-vault@latest pull production
+```
+
+## Configuration
+
+### Setting scripts in package.json
+
+Add these scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "node -r dotenv/config ./node_modules/.bin/next dev",
+    "build": "DOTENV_CONFIG_PATH=.env.production node -r dotenv/config ./node_modules/.bin/next build",
+    "start": "DOTENV_CONFIG_PATH=.env.production node -r dotenv/config ./node_modules/.bin/next start"
+  }
+}
+```
